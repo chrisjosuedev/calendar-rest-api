@@ -2,3 +2,9 @@ server:
   port: 9090
   servlet:
     context-path: /api
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://admin:Pt0huSlJ4U6PO1Vx@cluster0.vm2ap.mongodb.net/?retryWrites=true&w=majority
+      database: calendardb
