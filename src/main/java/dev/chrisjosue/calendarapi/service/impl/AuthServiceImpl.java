@@ -1,4 +1,4 @@
-package dev.chrisjosue.calendarapi.service.imp;
+package dev.chrisjosue.calendarapi.service.impl;
 
 import dev.chrisjosue.calendarapi.dto.auth.AuthDto;
 import dev.chrisjosue.calendarapi.dto.custom.AuthResponse;
@@ -14,7 +14,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class AuthServiceImp implements AuthService {
+public class AuthServiceImpl implements AuthService {
     private final AuthRepository authRepository;
 
     @Override

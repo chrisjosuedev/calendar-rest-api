@@ -21,7 +21,6 @@ import java.util.Date;
 public class EventEntity {
     @Id
     private String id;
-
     @NotBlank(message = "Title is required.")
     @Length(min = 1, message = "Name must be greater than 1.")
     private String title;
@@ -33,6 +32,7 @@ public class EventEntity {
 
     @NotBlank(message = "Title is required.")
     @NotNull(message = "Start Date is required.")
+    /// TODO: validate end must be greater than start
     private Date end;
 
     @DBRef
