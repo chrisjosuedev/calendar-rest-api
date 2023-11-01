@@ -1,11 +1,15 @@
 package dev.chrisjosue.calendarapi.controllers;
 
+import dev.chrisjosue.calendarapi.dto.custom.ResponseHandler;
 import dev.chrisjosue.calendarapi.dto.event.EventDto;
 import dev.chrisjosue.calendarapi.service.EventService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 
 @RestController
 @RequestMapping("/events")
@@ -25,7 +29,7 @@ public class EventController {
 
     @PostMapping
     public ResponseEntity<Object> createEvent(@Valid @RequestBody EventDto eventDto) {
-        return null;
+        return ResponseHandler.responseHandler(true, HttpStatus.CREATED, eventDto);
     }
 
     @PutMapping("/{id}")

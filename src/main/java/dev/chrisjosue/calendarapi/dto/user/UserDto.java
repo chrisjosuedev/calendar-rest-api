@@ -2,6 +2,7 @@ package dev.chrisjosue.calendarapi.dto.user;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,15 +14,16 @@ import org.hibernate.validator.constraints.Length;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDto {
-    @NotBlank(message = "Name is required.")
-    @Length(min = 8, message = "Minimum Name Length must be greater than 8.")
+    @Pattern(regexp = "[A-Za-z ]*", message = "Numbers and Special Characters not allowed in Name Field.")
+    @NotBlank(message = "Name Field is required.")
+    @Length(min = 8, message = "Minimum Name Field Length must be greater than 8.")
     private String name;
 
-    @NotBlank(message = "Email is required.")
-    @Email(message = "Email is invalid.")
+    @NotBlank(message = "Email Field is required.")
+    @Email(message = "Email Field is invalid.")
     private String email;
 
-    @NotBlank(message = "Password is required.")
-    @Length(min = 8, message = "Minimum Name Length must be greater than 8.")
+    @NotBlank(message = "Password Field is required.")
+    @Length(min = 8, message = "Minimum Name Field Length must be greater than 8.")
     private String password;
 }

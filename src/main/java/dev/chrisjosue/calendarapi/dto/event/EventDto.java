@@ -15,17 +15,14 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EventDto {
-    @NotBlank(message = "Title is required.")
-    @Length(min = 1, message = "Name must be greater than 1.")
+    @NotBlank(message = "Title Field is required.")
+    @Length(min = 1, message = "Title Field must be greater than 1.")
     private String title;
     private String notes;
-
-    @NotNull(message = "Start Date is required.")
-    @NotBlank(message = "Start Date is required.")
+    @NotNull(message = "Start Date Field is required.")
     private Date start;
 
-    @NotBlank(message = "Title is required.")
-    @NotNull(message = "Start Date is required.")
+    @NotNull(message = "End Date Field is required.")
     /// TODO: validate end must be greater than start
     private Date end;
 }

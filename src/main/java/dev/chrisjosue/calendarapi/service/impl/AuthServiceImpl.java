@@ -63,6 +63,7 @@ public class AuthServiceImpl implements AuthService {
         revokeAllTokens(userFound);
         Token newToken = saveToken(jwtService.generateToken(userFound), userFound);
         Token tokenSaved = tokenRepository.save(newToken);
+
         return AuthResponse.builder()
                 .uid(userFound.getId())
                 .name(userFound.getName())
