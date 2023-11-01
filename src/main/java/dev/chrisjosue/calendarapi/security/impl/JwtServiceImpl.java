@@ -18,10 +18,8 @@ import java.util.Map;
 import java.util.function.Function;
 
 @Service
-@RequiredArgsConstructor
 public class JwtServiceImpl implements JwtService {
-    @Value("${SECRET_KEY}")
-    private final String secretKey;
+    private static final String SECRET_KEY = "432646294A404E635166546A576E5A7234753778214125442A472D4B61506453";
 
     @Override
     public String generateToken(UserDetails userDetails) {
@@ -34,7 +32,7 @@ public class JwtServiceImpl implements JwtService {
                 .setClaims(extraClaims)
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + (1000 * 60 * 24)))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
@@ -80,7 +78,7 @@ public class JwtServiceImpl implements JwtService {
      * signIn Key
      */
     private Key getSignInKey() {
-        byte[] keyBytes = Decoders.BASE64.decode(secretKey);
+        byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
         return Keys.hmacShaKeyFor(keyBytes);
     }
 }

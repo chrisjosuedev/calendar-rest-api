@@ -18,7 +18,7 @@ public class EventController {
         return null;
     }
 
-    @GetMapping("/${id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Object> getEventById(@PathVariable("id") String id) {
         return null;
     }
@@ -28,8 +28,8 @@ public class EventController {
         return null;
     }
 
-    @PutMapping("/${id}")
-    public ResponseEntity<Object> updateEvent(@Valid @RequestBody EventDto eventDto) {
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> updateEvent(@PathVariable("id") String id, @Valid @RequestBody EventDto eventDto) {
         return null;
     }
 
