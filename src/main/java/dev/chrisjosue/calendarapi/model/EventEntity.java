@@ -32,7 +32,6 @@ public class EventEntity {
 
     @NotBlank(message = "Title is required.")
     @NotNull(message = "Start Date is required.")
-    /// TODO: validate end must be greater than start
     private Date end;
 
     @DBRef

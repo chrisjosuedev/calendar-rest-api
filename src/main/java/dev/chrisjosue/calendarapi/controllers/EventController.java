@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
+import java.security.Principal;
 
 @RestController
 @RequestMapping("/events")
@@ -19,26 +19,30 @@ public class EventController {
 
     @GetMapping
     public ResponseEntity<Object> getEvents() {
-        return null;
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Object> getEventById(@PathVariable("id") String id) {
-        return null;
+        return ResponseHandler.responseHandler(true,
+                HttpStatus.OK,
+                eventService.findAll());
     }
 
     @PostMapping
-    public ResponseEntity<Object> createEvent(@Valid @RequestBody EventDto eventDto) {
-        return ResponseHandler.responseHandler(true, HttpStatus.CREATED, eventDto);
+    public ResponseEntity<Object> createEvent(Principal principal, @Valid @RequestBody EventDto eventDto) {
+        return ResponseHandler.responseHandler(true,
+                HttpStatus.CREATED,
+                eventService.save(eventDto, principal.getName()));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> updateEvent(@PathVariable("id") String id, @Valid @RequestBody EventDto eventDto) {
-        return null;
+    public ResponseEntity<Object> updateEvent(Principal principal, @PathVariable("id") String id, @Valid @RequestBody EventDto eventDto) {
+        return ResponseHandler.responseHandler(true,
+                HttpStatus.OK,
+                eventService.update(eventDto, id, principal.getName()));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deleteEvent(@PathVariable("id") String id) {
-        return null;
+    public ResponseEntity<Object> deleteEvent(Principal principal, @PathVariable("id") String id) {
+        eventService.delete(id, principal.getName());
+        return ResponseHandler.responseHandler(true,
+                HttpStatus.OK,
+                null);
     }
 }

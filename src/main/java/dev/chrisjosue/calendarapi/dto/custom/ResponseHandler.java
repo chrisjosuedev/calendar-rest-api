@@ -11,8 +11,7 @@ public class ResponseHandler {
         Map<String, Object> response = new LinkedHashMap<>();
         response.put("ok", ok);
         response.put("httpStatus", httpStatus);
-        response.put("data", objectResponse);
-
+        if (objectResponse != null) response.put("data", objectResponse);
         return new ResponseEntity<>(response, httpStatus);
     }
 }

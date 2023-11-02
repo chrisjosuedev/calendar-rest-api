@@ -44,6 +44,7 @@ public class UserEntity implements UserDetails {
         return Collections.emptyList();
     }
 
+    @JsonIgnore
     @Override
     public String getUsername() {
         return this.getEmail();
