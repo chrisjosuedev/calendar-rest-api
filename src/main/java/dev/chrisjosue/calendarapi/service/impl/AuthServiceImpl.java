@@ -107,7 +107,7 @@ public class AuthServiceImpl implements AuthService {
                 .expired(false)
                 .revoked(false)
                 .type(TokenType.BEARER)
-                .userEntity(user)
+                .user(user)
                 .build();
     }
 }

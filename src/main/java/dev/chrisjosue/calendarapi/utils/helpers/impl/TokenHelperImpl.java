@@ -18,7 +18,7 @@ public class TokenHelperImpl implements TokenHelper {
 
     @Override
     public void revokeAllTokensByUser(UserEntity user) {
-        List<Token> allTokens = tokenRepository.findAllByUserEntityIdAndRevokedIsFalseOrExpiredIsFalse(user.getId());
+        List<Token> allTokens = tokenRepository.findAllByUserId(user.getId());
         if (allTokens.isEmpty()) return;
         allTokens.forEach((token) -> {
             token.setExpired(true);

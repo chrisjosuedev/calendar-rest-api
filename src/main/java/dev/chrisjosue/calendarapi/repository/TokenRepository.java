@@ -9,6 +9,6 @@ import java.util.Optional;
 
 @Repository
 public interface TokenRepository extends MongoRepository<Token, String> {
-    List<Token> findAllByUserEntityIdAndRevokedIsFalseOrExpiredIsFalse(String id);
+    List<Token> findAllByUserId(String uid);
     Optional<Token> findByToken(String token);
 }
