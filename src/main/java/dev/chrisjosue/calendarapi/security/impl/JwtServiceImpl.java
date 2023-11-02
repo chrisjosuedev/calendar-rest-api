@@ -3,14 +3,13 @@ package dev.chrisjosue.calendarapi.security.impl;
 import dev.chrisjosue.calendarapi.security.JwtService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import java.security.Key;
+import javax.crypto.SecretKey;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -19,6 +18,7 @@ import java.util.function.Function;
 @Service
 public class JwtServiceImpl implements JwtService {
     private final String secretKey;
+    private final static int EXPIRATION_IN_HOURS = 1;
 
     public JwtServiceImpl(@Value("${SECRET_KEY}") String secretKey) {
         this.secretKey = secretKey;
@@ -31,12 +31,19 @@ public class JwtServiceImpl implements JwtService {
 
     @Override
     public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
-        return Jwts.builder()
-                .setClaims(extraClaims)
-                .setSubject(userDetails.getUsername())
-                .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
-                .signWith(getSignInKey(), SignatureAlgorithm.HS256)
+        Date issuedAt = new Date(System.currentTimeMillis());
+        return Jwts
+                .builder()
+                .header()
+                .type("JWT")
+                .and()
+                .claims(extraClaims)
+                .subject(userDetails.getUsername())
+                .issuedAt(issuedAt)
+                .expiration(new Date(
+                        issuedAt.getTime() + (EXPIRATION_IN_HOURS * 60 * 60 * 1000)
+                ))
+                .signWith(getSignInKey(), Jwts.SIG.HS256)
                 .compact();
     }
 
@@ -70,17 +77,17 @@ public class JwtServiceImpl implements JwtService {
      */
     private Claims getAllClaims(String token) {
         return Jwts
-                .parserBuilder()
-                .setSigningKey(getSignInKey())
+                .parser()
+                .verifyWith(getSignInKey())
                 .build()
-                .parseClaimsJws(token)
-                .getBody();
+                .parseSignedClaims(token)
+                .getPayload();
     }
 
     /**
      * signIn Key
      */
-    private Key getSignInKey() {
+    private SecretKey getSignInKey() {
         byte[] keyBytes = Decoders.BASE64.decode(secretKey);
         return Keys.hmacShaKeyFor(keyBytes);
     }
