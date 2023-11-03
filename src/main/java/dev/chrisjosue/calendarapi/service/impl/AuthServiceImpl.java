@@ -35,7 +35,7 @@ public class AuthServiceImpl implements AuthService {
     public AuthResponse signUp(UserDto userDto) {
         Optional<UserEntity> emailExists = authRepository.findByEmail(userDto.getEmail());
 
-        if (emailExists.isPresent()) throw new RuntimeException("Email already exists");
+        if (emailExists.isPresent()) throw new RuntimeException("User already exists.");
 
         var newUser = UserEntity.builder()
                 .name(userDto.getName())
