@@ -11,15 +11,22 @@
 The Collaborative Events Calendar RestAPI is a powerful tool designed to help you manage and coordinate events in a collaborative environment. Built using the Spring Framework, this API allows users to register, log in, and efficiently manage their events. Whether you're a developer looking to integrate this API into your application or an end user seeking to harness its capabilities, this documentation will provide you with a clear understanding of what the API does and how to use it effectively.
 
 ## 👨‍💻 Documentation OpenAPI
-- [Review Collections & Documentation](https://documention.com)
+- [Review Collections & Documentation](https://documenter.getpostman.com/view/21748987/2s9YXe6PVp)
+
+## ✍🏻 Getting Started
+Before you get started, make sure you have the following:
+1. Java Development Kit (JDK): Install JDK 8 or above on your system.
+2. Maven: Ensure you have Maven installed to manage dependencies and build the project.
+3. Database: Configure a MongoDB and update the `application.yml` uri.
 
 ## 🚀 Setup
 > This is the local version for execution.
 
-1. Clone this project: `git clone https://github.com/chrisjosuedev/grocery-rest-api.git`
+1. Clone this project: `git clone https://github.com/chrisjosuedev/calendar-rest-api.git`
 2. Go to the project folder:
    `cd calendar-rest-api`
 3. Configure your MongoDB Cluster and replace `uri` in `application.yml` with your database uri.
+4. Build the project using Maven `mvn clean install`
 
 ## 🛠 Run
 
@@ -28,9 +35,9 @@ The Collaborative Events Calendar RestAPI is a powerful tool designed to help yo
    > Please check the documentation (Postman) above to see the available endpoints and change `Dev Env`
 
 ## 🦀 Technologies
-
 ![SpringBoot badge](https://img.shields.io/badge/springboot-java-brightgreen)
-![MySQL badge](https://img.shields.io/badge/mongodb-db-green)
+![Java badge](https://img.shields.io/badge/java-21-red)
+![MongoDB badge](https://img.shields.io/badge/mongodb-db-green)
 
 ## 🧾 License
 
