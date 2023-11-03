@@ -55,7 +55,7 @@ public class AppConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 
         // URLs Allowed
-        configuration.setAllowedOrigins(List.of("https://example.com"));
+        configuration.setAllowedOrigins(List.of("http://localhost:5173"));
 
         configuration.addAllowedMethod("*");
         configuration.addAllowedHeader("*");
