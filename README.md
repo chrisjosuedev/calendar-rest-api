@@ -26,7 +26,8 @@ Before you get started, make sure you have the following:
 2. Go to the project folder:
    `cd calendar-rest-api`
 3. Configure your MongoDB Cluster and replace `uri` in `application.yml` with your database uri.
-4. Build the project using Maven `mvn clean install`
+4. Configure Env Variable: `SECRET_KEY`, with a new value.
+5. Build the project using Maven `mvn clean install`
 
 ## 🛠 Run
 
