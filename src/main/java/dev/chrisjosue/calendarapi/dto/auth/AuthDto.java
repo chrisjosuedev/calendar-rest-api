@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.Length;
 
 @Data
 @Builder
@@ -19,6 +18,5 @@ public class AuthDto {
     private String email;
 
     @NotBlank(message = "Password is required.")
-    @Length(min = 8, message = "Minimum Name Length must be greater than 8.")
     private String password;
 }
