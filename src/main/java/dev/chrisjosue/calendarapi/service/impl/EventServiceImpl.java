@@ -47,7 +47,7 @@ public class EventServiceImpl implements EventService {
             if (eventToUpdate == null)
                 throw new MyBusinessException("Event does not exists.", HttpStatus.NOT_FOUND);
             if (!belongsToUser(eventToUpdate, userLogged.getId()))
-                throw new MyBusinessException("You does not have permissions to remove this event.", HttpStatus.FORBIDDEN);
+                throw new MyBusinessException("You does not have permissions to update this event.", HttpStatus.FORBIDDEN);
             /*
              * Update Event Entity with New Values
              */
