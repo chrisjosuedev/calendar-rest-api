@@ -11,8 +11,8 @@
     <groupId>dev.chrisjosue</groupId>
     <artifactId>calendarapi</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>backend</name>
-    <description>backend</description>
+    <name>calendar-event-collaborative</name>
+    <description>Tool designed to help you manage and coordinate events in a collaborative environment</description>
     <properties>
         <java.version>19</java.version>
     </properties>
