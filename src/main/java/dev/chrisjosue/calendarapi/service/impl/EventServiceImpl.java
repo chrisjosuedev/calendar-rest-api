@@ -24,59 +24,47 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public EventEntity save(EventDto eventDto, String username) {
-        try {
-            var newEvent = EventEntity.builder()
-                    .title(eventDto.getTitle())
-                    .notes((eventDto.getNotes() == null ? "" : eventDto.getNotes()))
-                    .start(eventDto.getStart())
-                    .end(eventDto.getEnd())
-                    .user(getUserLogged(username))
-                    .build();
-            return eventRepository.save(newEvent);
-        } catch (RuntimeException ex) {
-            throw new MyBusinessException(ex.getMessage(), HttpStatus.BAD_REQUEST);
-        }
+        var newEvent = EventEntity.builder()
+                .title(eventDto.getTitle())
+                .notes((eventDto.getNotes() == null ? "" : eventDto.getNotes()))
+                .start(eventDto.getStart())
+                .end(eventDto.getEnd())
+                .user(getUserLogged(username))
+                .build();
+        return eventRepository.save(newEvent);
     }
 
     @Override
     public EventEntity update(EventDto eventDto, String uid, String username) {
-        try {
-            userLogged = getUserLogged(username);
-            var eventToUpdate = eventRepository.findById(uid)
-                    .orElse(null);
-            if (eventToUpdate == null)
-                throw new MyBusinessException("Event does not exists.", HttpStatus.NOT_FOUND);
-            if (!belongsToUser(eventToUpdate, userLogged.getId()))
-                throw new MyBusinessException("You does not have permissions to update this event.", HttpStatus.FORBIDDEN);
-            /*
-             * Update Event Entity with New Values
-             */
-            if (eventDto.getNotes() != null) eventToUpdate.setNotes(eventDto.getNotes());
-            eventToUpdate.setTitle(eventDto.getTitle());
-            eventToUpdate.setStart(eventDto.getStart());
-            eventToUpdate.setEnd(eventDto.getEnd());
+        userLogged = getUserLogged(username);
+        var eventToUpdate = eventRepository.findById(uid)
+                .orElse(null);
+        if (eventToUpdate == null)
+            throw new MyBusinessException("Event does not exists.", HttpStatus.NOT_FOUND);
+        if (!belongsToUser(eventToUpdate, userLogged.getId()))
+            throw new MyBusinessException("You does not have permissions to update this event.", HttpStatus.FORBIDDEN);
+        /*
+         * Update Event Entity with New Values
+         */
+        if (eventDto.getNotes() != null) eventToUpdate.setNotes(eventDto.getNotes());
+        eventToUpdate.setTitle(eventDto.getTitle());
+        eventToUpdate.setStart(eventDto.getStart());
+        eventToUpdate.setEnd(eventDto.getEnd());
 
-            return eventRepository.save(eventToUpdate);
-        } catch (RuntimeException ex) {
-            throw new MyBusinessException(ex.getMessage(), HttpStatus.BAD_REQUEST);
-        }
+        return eventRepository.save(eventToUpdate);
     }
 
     @Override
     public void delete(String uid, String username) {
-        try {
-            userLogged = getUserLogged(username);
-            var eventToDelete = eventRepository.findById(uid)
-                    .orElse(null);
-            if (eventToDelete == null)
-                throw new MyBusinessException("Event does not exists.", HttpStatus.NOT_FOUND);
-            if (!belongsToUser(eventToDelete, userLogged.getId()))
-                throw new MyBusinessException("You does not have permissions to remove this event.", HttpStatus.FORBIDDEN);
+        userLogged = getUserLogged(username);
+        var eventToDelete = eventRepository.findById(uid)
+                .orElse(null);
+        if (eventToDelete == null)
+            throw new MyBusinessException("Event does not exists.", HttpStatus.NOT_FOUND);
+        if (!belongsToUser(eventToDelete, userLogged.getId()))
+            throw new MyBusinessException("You does not have permissions to remove this event.", HttpStatus.FORBIDDEN);
 
-            eventRepository.deleteById(uid);
-        } catch (RuntimeException ex) {
-            throw new MyBusinessException(ex.getMessage(), HttpStatus.BAD_REQUEST);
-        }
+        eventRepository.deleteById(uid);
     }
 
     @Override

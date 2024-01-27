@@ -24,6 +24,6 @@ public class UserDto {
     private String email;
 
     @NotBlank(message = "Password Field is required.")
-    @Length(min = 8, message = "Minimum Name Field Length must be greater than 8.")
+    @Length(min = 8, message = "Minimum Password Field Length must be greater than 8.")
     private String password;
 }
