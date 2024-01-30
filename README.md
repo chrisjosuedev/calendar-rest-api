@@ -11,7 +11,7 @@
 The Collaborative Events Calendar RestAPI is a powerful tool designed to help you manage and coordinate events in a collaborative environment. Built using the Spring Framework, this API allows users to register, log in, and efficiently manage their events. Whether you're a developer looking to integrate this API into your application or an end user seeking to harness its capabilities, this documentation will provide you with a clear understanding of what the API does and how to use it effectively.
 
 ## 👨‍💻 Documentation OpenAPI
-- [Swagger](https://link.com)
+- [Swagger](http://ec2-3-144-222-220.us-east-2.compute.amazonaws.com:90/api/swagger-ui/index.html)
 - [Postman Collections & Documentation](https://documenter.getpostman.com/view/21748987/2s9YXe6PVp)
 
 ## ✍🏻 Getting Started
@@ -28,7 +28,7 @@ Before you get started, make sure you have the following:
    `cd calendar-rest-api`
 3. Configure your MongoDB Cluster and replace `uri` in `application.yml` with your database uri.
 4. Configure Env Variable: `SECRET_KEY`, with a new value.
-5. Build the project using Maven `mvn clean install`
+5. Build the project using Maven `mvn clean install -DskipTests`
 
 ## 🛠 Run
 
