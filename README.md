@@ -11,7 +11,7 @@
 The Collaborative Events Calendar RestAPI is a powerful tool designed to help you manage and coordinate events in a collaborative environment. Built using the Spring Framework, this API allows users to register, log in, and efficiently manage their events. Whether you're a developer looking to integrate this API into your application or an end user seeking to harness its capabilities, this documentation will provide you with a clear understanding of what the API does and how to use it effectively.
 
 ## 👨‍💻 Documentation OpenAPI
-- [Swagger](http://ec2-3-144-222-220.us-east-2.compute.amazonaws.com:90/api/swagger-ui/index.html)
+- [Swagger](https://events-api-ch4j.onrender.com/api/swagger-ui/index.html)
 - [Postman Collections & Documentation](https://documenter.getpostman.com/view/21748987/2s9YXe6PVp)
 
 ## ✍🏻 Getting Started
